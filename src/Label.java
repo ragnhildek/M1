@@ -1,5 +1,5 @@
 
 public class Label {
-int time 
-int 
+public float time; 
+public Vehicle Vehicle ;
 }
