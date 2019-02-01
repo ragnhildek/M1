@@ -1,0 +1,138 @@
+!Freight order 1  has pickup in  Trondheim and delivery in  Dombås
+!Freight order 2  has pickup in  Ringebu and delivery in Oppdal
+!Vehicle 1 has startdepot  Røros
+!Vehicle 2 has startdepot  Dombås
+!Vehicle 3 has startdepot Lillehammer
+PickupNodes :   2, 4
+DeliveryNodes : 3, 5
+NodesVehiclek : [0  1  2  3  4  5]
+!NodesWithoutStartDepot : [1  2  3  4  5]
+!NodesWithoutEndDepot : [0  2  3  4  5]
+Nodes : [2  3  4  5]
+VolumeCap : [81]
+WeightCap : [30]
+VolumeWeightConstant : [3.5]
+Vehicles : [1]
+EarlyTimeWindow : [0            0            4        30.75           12        38.25]
+LateTimeWindow : [79           79            28         54.75            36         62.25]
+
+WeightLoad :[
+
+     7     0
+     0     6
+]
+
+VolumeLoad :[
+
+    24     0
+     0    21
+]
+
+DrivingTime :[
+
+         0         0         0         0         0         0
+         0         0         0         0         0         0
+         0         0         0    2.7500    4.0000    1.7500
+         0         0    2.7500         0    1.2500    1.0000
+         0         0    4.0000    1.2500         0    2.2500
+         0         0    1.7500    1.0000    2.2500         0
+]
+
+DrivingDistance :[
+
+     0     0     0     0     0     0
+     0     0     0     0     0     0
+     0     0     0   198   280   119
+     0     0   198     0    98    79
+     0     0   280    98     0   162
+     0     0   119    79   162     0
+]
+
+StartDepotTime :[
+
+    2.2500
+    3.0000
+]
+
+StartDepotDistance :[
+
+   154
+   208
+]
+
+StartDepotTime2 :[
+
+    2.2500    2.7500
+    3.0000    1.2500
+]
+
+StartDepotDistance2 :[
+
+   154   198
+   208    98
+]
+
+StartDepotTime3 :[
+
+    2.2500    2.7500    4.7500
+    3.0000    1.2500    0.7500
+]
+
+StartDepotDistance3 :[
+
+   154   198   336
+   208    98    57
+ ]  
+   
+   
+   
+!--------------------------------------------------------------------------------------------------------------------------------------
+
+! MaxConsecutiveDrivingHours: [4.5]
+
+! IntermediateBreakTime: [0.75]
+
+! MaxConsecutiveWorkingHours : [6]
+
+! MaxDailyDrivingHours : [9]
+
+! MinDailyRestingHours : [11]
+
+! HoursInDay: [24]
+
+! MaxWeeklyDrivingHours : [56]
+
+! DrivingBigM1 : [79]
+
+! DrivingBigM2 : [11]
+
+! MaxWaitingTime : [0]
+
+! MaxBreakDuration: [11]
+
+! TimeBigM : [79]
+
+
+
+!--------------------------------------------------------------------------------------------------------------------------
+
+FuelPrice : [14.84]
+
+FuelConsumptionEmptyTruckPerKm : [0.42]
+
+FuelConsumptionPerTonPerKm : [0.01]
+
+LabourCostPerHour : [469]
+
+OtherDistanceDependentCostsPerKm : [3.55]
+
+OtherTimeDependentCostsPerHour : [199]
+
+TimeTonService : [0.1]
+
+
+
+
+
+
+Revenue : [100]
