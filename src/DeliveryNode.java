@@ -1,5 +1,6 @@
 
 public class DeliveryNode {
+	public int number; // uneven number
 	public int deliveryLocation;
 	public int weight;
 	public int volume;

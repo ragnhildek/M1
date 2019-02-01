@@ -1,4 +1,5 @@
 public class PickupNode {
+	public int number; // Even number
 	public int pickupLocation;
 	public int weight;
 	public int volume;
