@@ -7,6 +7,8 @@ public class Main {
 		String datafile = "1D2R1V.txt";
 		ArrayList<PickupNode> pickupnodes = new ArrayList<PickupNode>();
 		ArrayList<DeliveryNode> deliverynodes = new ArrayList<DeliveryNode>();
+		
+		InputReader.inputReader(datafile, pickupnodes, deliverynodes) ;
 
 	}
 

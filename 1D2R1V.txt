@@ -1,15 +1,9 @@
-!Freight order 1  has pickup in  Trondheim and delivery in  Dombås
-!Freight order 2  has pickup in  Ringebu and delivery in Oppdal
-!Vehicle 1 has startdepot  Røros
-!Vehicle 2 has startdepot  Dombås
-!Vehicle 3 has startdepot Lillehammer
-PickupNodes :   2, 4,
-DeliveryNodes : 3, 5,
-NodesVehiclek : 0,  1,  2,  3,  4,  5,
-Nodes : 2,  3,  4,  5,
-VolumeCap : 81
-WeightCap : 30
-Vehicles : 1
+PickupNodes ,   2, 4,
+DeliveryNodes , 3, 5,
+NodesVehiclek , 0,  1,  2,  3,  4,  5,
+Nodes , 2,  3,  4,  5,
+VolumeCap , 81
+WeightCap , 30
 EarlyTimeWindow : 0,            0,            4,         30.75,           12,        38.25,
 LateTimeWindow : 79,       79,           28,         54.75,            36,    62.25,
 
@@ -44,7 +38,7 @@ Distances :		          0,     495,     384,     119,     154,     378,     198, 
                         336,     168,     62,      218,     264,     45,      154,     0,       57,      367,	0,
                         280,     221,     115,     162,     208,     98,      98,      57,      0,       311,	0,
                         36,      524,     415,     149,     168,     409,     228,     367,     311,     0,		0,
-                
+                		0,		 0,		  0,	   0, 		0, 		 0, 	  0,	   0, 	    0,       0,     0,
 
 
 
@@ -77,7 +71,6 @@ Distances :		          0,     495,     384,     119,     154,     378,     198, 
 ! TimeBigM : [79]
 
 
-
 !--------------------------------------------------------------------------------------------------------------------------
 
 FuelPrice : [14.84]
@@ -94,9 +87,10 @@ OtherTimeDependentCostsPerHour : [199]
 
 TimeTonService : [0.1]
 
-
-
-
-
-
 Revenue : [100]
+
+!Freight order 1  has pickup in  Trondheim and delivery in  Dombås
+!Freight order 2  has pickup in  Ringebu and delivery in Oppdal
+!Vehicle 1 has startdepot  Røros
+!Vehicle 2 has startdepot  Dombås
+!Vehicle 3 has startdepot Lillehammer
