@@ -5,9 +5,9 @@ public class InstanceData {
 	public String instanceName;
 	public float fuelPrice;
 	public float fuelConsumptionEmptyTruckPerKm;
-	public float fuelConsumptionPerTonkm;
+	public float fuelConsumptionPerTonKm;
 	public int laborCostperHour;
-	public int otherDistanceDependentCostsPerKm;
+	public float otherDistanceDependentCostsPerKm;
 	public int otherTimeDependentCostsPerKm;
 	public float timeTonService;
 	public int revenue;
@@ -15,6 +15,9 @@ public class InstanceData {
 	public ArrayList<Integer> nodes;
 	public int volumeCap;
 	public int weightCap;
+	public float[][] times;
+	public int[][] distances;
+	public int numberOfCities;
 	
 	public InstanceData(String datafile) {
 		this.instanceName = datafile;

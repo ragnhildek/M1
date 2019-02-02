@@ -9,7 +9,7 @@ PickupLocations, 3, 4,
 DeliveryLocations, 2, 3,
 StartDepot, 1,
 EndDepot, 11,
-
+NumberOfCities, 11,
 Times :                 
 						0,       6.5,     5.25,    1.75,    2.25,    5.25,    2.75,    4.75,    4,       0.5,	0,
                         6.5,     0,       1.75,    5.25,    4.75,    1.75,    4.15,    2.5,     3,       6.75,	0,
@@ -22,11 +22,8 @@ Times :
                         4,       3,       1.75,    2.25,    3,       1.25,    1.25,    0.75,    0,       4.5,	0,
                         0.5,     6.75,    5.5,     2.25,    2.5,     5.75,    3.25,    5.25,    4.5,     0,		0,
                         0,		 0, 	  0, 	   0, 		0,		 0, 	  0, 	   0,       0,       0,     0,	
-                
-
-
-               
-Distances :		          0,     495,     384,     119,     154,     378,     198,     336,     280,     36,	0,
+Distances :		
+				         0,      495,     384,     119,     154,     378,     198,     336,     280,     36,	0,
                         495,     0,       129,     414,     382,     123,     319,     168,     221,     524,   0,
                         384,     129,     0,       277,     272,     52,      213,     62,      115,     415,   0,
                         119,     414,     277,     0,       153,     260,     79,      218,     162,     149,   0,
@@ -37,55 +34,14 @@ Distances :		          0,     495,     384,     119,     154,     378,     198, 
                         280,     221,     115,     162,     208,     98,      98,      57,      0,       311,	0,
                         36,      524,     415,     149,     168,     409,     228,     367,     311,     0,		0,
                 		0,		 0,		  0,	   0, 		0, 		 0, 	  0,	   0, 	    0,       0,     0,
-
-
-
-   
-   
-!--------------------------------------------------------------------------------------------------------------------------------------
-
-! MaxConsecutiveDrivingHours: [4.5]
-
-! IntermediateBreakTime: [0.75]
-
-! MaxConsecutiveWorkingHours : [6]
-
-! MaxDailyDrivingHours : [9]
-
-! MinDailyRestingHours : [11]
-
-! HoursInDay: [24]
-
-! MaxWeeklyDrivingHours : [56]
-
-! DrivingBigM1 : [79]
-
-! DrivingBigM2 : [11]
-
-! MaxWaitingTime : [0]
-
-! MaxBreakDuration: [11]
-
-! TimeBigM : [79]
-
-
-!--------------------------------------------------------------------------------------------------------------------------
-
-FuelPrice : [14.84]
-
-FuelConsumptionEmptyTruckPerKm : [0.42]
-
-FuelConsumptionPerTonPerKm : [0.01]
-
-LabourCostPerHour : [469]
-
-OtherDistanceDependentCostsPerKm : [3.55]
-
-OtherTimeDependentCostsPerHour : [199]
-
-TimeTonService : [0.1]
-
-Revenue : [100]
+FuelPrice, 14.84
+FuelConsumptionEmptyTruckPerKm, 0.42
+FuelConsumptionPerTonPerKm, 0.01
+LabourCostPerHour, 469
+OtherDistanceDependentCostsPerKm, 3.55
+OtherTimeDependentCostsPerHour, 199
+TimeTonService, 0.1
+Revenue, 100
 
 !Freight order 1  has pickup in  Trondheim and delivery in  Dombås
 !Freight order 2  has pickup in  Ringebu and delivery in Oppdal

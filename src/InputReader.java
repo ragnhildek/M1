@@ -23,7 +23,6 @@ public class InputReader {
 				//System.out.println(number);
 				Node hello = new Node(number);
 				nodes.add(hello);
-				hello.number = number;
 				if(number == 0 || number == 1) {
 					hello.type = "Depot";
 					depot.add(hello);
@@ -119,6 +118,80 @@ public class InputReader {
 			number = Integer.parseInt(list1[1].trim());
 			depot.get(1).location = number;
 			depot.get(1).getLocation(number);
+			
+			line = fr.readLine();
+			System.out.println(line);
+			list1 = line.split(",");
+			inputdata.numberOfCities = Integer.parseInt(list1[1].trim());
+			
+			inputdata.times = new float[inputdata.numberOfCities][inputdata.numberOfCities];
+			inputdata.distances = new int[inputdata.numberOfCities][inputdata.numberOfCities];
+			
+			fr.readLine();
+			
+			for(int i = 0; i < inputdata.numberOfCities; i++) {
+				line = fr.readLine();
+				for(int j = 0; j < inputdata.numberOfCities; j++){
+				list1 = line.split(",");
+				inputdata.times[i][j] = Float.parseFloat(list1[j].trim());
+				}
+			}
+			
+			fr.readLine();
+	
+			for(int i = 0; i < inputdata.numberOfCities; i++) {
+				line = fr.readLine();
+				for(int j = 0; j < inputdata.numberOfCities; j++){
+				list1 = line.split(",");
+				inputdata.distances[i][j] = Integer.parseInt(list1[j].trim());
+				}
+			}
+			System.out.println(inputdata.distances[0][1]);
+			
+			line = fr.readLine();
+			System.out.println(line);
+			list1 = line.split(",");
+			inputdata.fuelPrice = Float.parseFloat(list1[1].trim());
+			
+			line = fr.readLine();
+			System.out.println(line);
+			list1 = line.split(",");
+			inputdata.fuelConsumptionEmptyTruckPerKm = Float.parseFloat(list1[1].trim());
+			
+			line = fr.readLine();
+			System.out.println(line);
+			list1 = line.split(",");
+			inputdata.fuelConsumptionPerTonKm = Float.parseFloat(list1[1].trim());
+			
+			line = fr.readLine();
+			System.out.println(line);
+			list1 = line.split(",");
+			inputdata.laborCostperHour = Integer.parseInt(list1[1].trim());
+			
+			line = fr.readLine();
+			System.out.println(line);
+			list1 = line.split(",");
+			inputdata.otherDistanceDependentCostsPerKm = Float.parseFloat(list1[1].trim());
+			
+			line = fr.readLine();
+			System.out.println(line);
+			list1 = line.split(",");
+			inputdata.otherTimeDependentCostsPerKm = Integer.parseInt(list1[1].trim());
+			
+			line = fr.readLine();
+			System.out.println(line);
+			list1 = line.split(",");
+			inputdata.timeTonService = Float.parseFloat(list1[1].trim());
+			
+			line = fr.readLine();
+			System.out.println(line);
+			list1 = line.split(",");
+			inputdata.revenue = Integer.parseInt(list1[1].trim());
+			
+			
+			
+			
+			
 			
 		
 			
