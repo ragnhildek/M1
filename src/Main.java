@@ -5,10 +5,16 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String datafile = "1D2R1V.txt";
-		ArrayList<PickupNode> pickupnodes = new ArrayList<PickupNode>();
-		ArrayList<DeliveryNode> deliverynodes = new ArrayList<DeliveryNode>();
+		//ArrayList<PickupNode> pickupnodes = new ArrayList<PickupNode>();
+		//ArrayList<DeliveryNode> deliverynodes = new ArrayList<DeliveryNode>();
+		ArrayList<Node> nodes = new ArrayList<Node>();
+		ArrayList<Node> depot = new ArrayList<Node>();
+		ArrayList<Node> pickupNodes = new ArrayList<Node>();
+		ArrayList<Node> deliveryNodes = new ArrayList<Node>();
 		
-		InputReader.inputReader(datafile, pickupnodes, deliverynodes) ;
+		InstanceData inputdata = new InstanceData(datafile);
+
+		InputReader.inputReader(datafile, nodes, inputdata, depot, pickupNodes, deliveryNodes) ;
 
 	}
 

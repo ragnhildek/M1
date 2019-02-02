@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 
 public class InputReader {
-	public static void inputReader(String datafile, ArrayList<PickupNode> pickupnodes, ArrayList<DeliveryNode> deliverynodes) {
+	public static void inputReader(String datafile,  ArrayList<Node> nodes, InstanceData inputdata, ArrayList<Node> depot, ArrayList<Node> pickupNodes, ArrayList<Node> deliveryNodes) {
 		int noCustomers = 0;
 		int noVessels = 0;
 		try {
@@ -20,22 +20,144 @@ public class InputReader {
 			String[] list1 =line.split(",");
 			for (int i = 1; i < list1.length; i++) {
 				int number = Integer.parseInt(list1[i].trim());
-				pickupnodes.add(new PickupNode(number));
+				//System.out.println(number);
+				Node hello = new Node(number);
+				nodes.add(hello);
+				hello.number = number;
+				if(number == 0 || number == 1) {
+					hello.type = "Depot";
+					depot.add(hello);
+				}
+				else if((number%2)==0) {
+					hello.type = "PickupNode";
+					pickupNodes.add(hello);
+				}
+				else {
+					hello.type = "DeliveryNode";
+					deliveryNodes.add(hello);
+				}
 			}
-			//System.out.println(Arrays.toString(list1));
 			
-			System.out.println(pickupnodes);
+			//for(int i=0; i <nodes.size(); i++){
+			//	System.out.println(nodes.get(i).number);
+			//}
+				
+			
 			
 			line = fr.readLine();
 			System.out.println(line);
-			list1 =line.split(",");
-			for (int i = 1; i < list1.length; i++) {
-				int number = Integer.parseInt(list1[i].trim());
-				deliverynodes.add(new DeliveryNode(number));
+			list1 = line.split(",");
+			inputdata.volumeCap = Integer.parseInt(list1[1].trim());
+			
+			line = fr.readLine();
+			System.out.println(line);
+			list1 = line.split(",");
+			inputdata.weightCap = Integer.parseInt(list1[1].trim());	
+			
+			line = fr.readLine();
+			System.out.println(line);
+			list1 = line.split(",");
+			for(int i = 1; i < list1.length; i++){
+				float number = Float.parseFloat(list1[i].trim());
+				nodes.get(i-1).earlyTimeWindow = number;
+				System.out.println(number);
 			}
+			System.out.println(nodes.get(2).earlyTimeWindow);
+			
+			line = fr.readLine();
+			System.out.println(line);
+			list1 = line.split(",");
+			for(int i = 1; i < list1.length; i++){
+				float number = Float.parseFloat(list1[i].trim());
+				nodes.get(i-1).lateTimeWindow = number;
+			}
+			
+			line = fr.readLine();
+			//System.out.println(line);
+			list1 = line.split(",");
+			for(int i = 1; i < list1.length; i++){
+				int number = Integer.parseInt(list1[i].trim());
+				pickupNodes.get(i-1).weight = number;
+				deliveryNodes.get(i-1).weight = number;
+				//System.out.println(number);
+			}
+			
+			line = fr.readLine();
+			//System.out.println(line);
+			list1 = line.split(",");
+			for(int i = 1; i < list1.length; i++){
+				int number = Integer.parseInt(list1[i].trim());
+				pickupNodes.get(i-1).volume = number;
+				deliveryNodes.get(i-1).volume = number;
+				//System.out.println(number);
+			}
+			//System.out.println(pickupNodes.get(1).weight);
+			
+			line = fr.readLine();
+			list1 = line.split(",");
+			for(int i = 1; i < list1.length; i++){
+				int number = Integer.parseInt(list1[i].trim());
+				pickupNodes.get(i-1).location = number;
+				pickupNodes.get(i-1).getLocation(number);
+			}
+			line = fr.readLine();
+			list1 = line.split(",");
+			for(int i = 1; i < list1.length; i++){
+				int number = Integer.parseInt(list1[i].trim());
+				deliveryNodes.get(i-1).location = number;
+				deliveryNodes.get(i-1).getLocation(number);
+			}
+			// System.out.println(pickupNodes.get(1).locationName);
+			line = fr.readLine();
+			list1 = line.split(",");
+			int number = Integer.parseInt(list1[1].trim());
+			depot.get(0).location = number;
+			depot.get(0).getLocation(number);
+			
+			line = fr.readLine();
+			list1 = line.split(",");
+			number = Integer.parseInt(list1[1].trim());
+			depot.get(1).location = number;
+			depot.get(1).getLocation(number);
+			
+		
+			
+			
+			
 			//System.out.println(Arrays.toString(list1));
 			
-			System.out.println(deliverynodes);
+			// System.out.println(pickupnodes.get(0).number);
+			
+			//line = fr.readLine();
+			//System.out.println(line);
+			//list1 =line.split(",");
+			//for (int i = 1; i < list1.length; i++) {
+			//	int number = Integer.parseInt(list1[i].trim());
+			//	deliverynodes.add(new DeliveryNode(number));
+			//}
+			//System.out.println(Arrays.toString(list1));
+			
+			// System.out.println(deliverynodes);
+			
+			//line = fr.readLine();
+			//System.out.println(line);
+			//list1 =line.split(",");
+			//for (int i = 1; i < list1.length; i++) {
+			//	int number = Integer.parseInt(list1[i].trim());
+			//	inputdata.nodesDepot.add(number);
+			//}
+			
+			//line = fr.readLine();
+			//System.out.println(line);
+			//list1 =line.split(",");
+			//for (int i = 1; i < list1.length; i++) {
+			//	int number = Integer.parseInt(list1[i].trim());
+			//	inputdata.nodes.add(number);
+			//}
+			
+			//line = fr.readLine();
+			//System.out.println(line);
+			//list1 =line.split(",");
 			
 			
 			
@@ -278,6 +400,7 @@ public class InputReader {
 			e.printStackTrace();
 		}
 	}
+	
 		
 
 
