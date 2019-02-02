@@ -7,4 +7,8 @@ public class DeliveryNode {
 	public float earlyTimeWindow;
 	public float lateTimeWindow;
 	public PickupNode pickupNode; 
+	
+	public DeliveryNode(int number) {
+		this.number = number;
+	}
 }
