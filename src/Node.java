@@ -18,7 +18,7 @@ public class Node {
 	
 	public void getLocation(int location){
 	
-		switch(location+1) {
+		switch(location) {
 		case 1: locationName = "Trondheim";
 		break;
 		case 2: locationName = "Oslo";
@@ -42,6 +42,26 @@ public class Node {
 		case 11: locationName = "End";
 		}
 	}
+	
+	public Node getCorrespondingNode(Node node, ArrayList<Node>nodes) {
+		int num = node.number;
+		for(int i = 0; i<nodes.size();i++){
+			if(node.type=="PickupNode"){
+				if (nodes.get(i).number== num+1){
+				Node node1 = nodes.get(i); 
+				return node1;
+				}
+			}
+			else if (node.type == "DeliveryNode"){
+				if (nodes.get(i).number== num-1){
+				Node node1 = nodes.get(i); 
+				return node1;
+				}
+					
+				}			
+		}
+		return null;
+		}
 
 
 

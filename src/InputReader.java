@@ -110,23 +110,23 @@ public class InputReader {
 			list1 = line.split(",");
 			for(int i = 1; i < list1.length; i++){
 				int number = Integer.parseInt(list1[i].trim());
-				deliveryNodes.get(i-1).location = number-1;
-				deliveryNodes.get(i-1).getLocation(number-1);
+				deliveryNodes.get(i-1).location = number;
+				deliveryNodes.get(i-1).getLocation(number);
 			}
 			
 			// Assigning location to the startdepot
 			line = fr.readLine();
 			list1 = line.split(",");
 			int number = Integer.parseInt(list1[1].trim());
-			depot.get(0).location = number-1;
-			depot.get(0).getLocation(number-1);
+			depot.get(0).location = number;
+			depot.get(0).getLocation(number);
 			
 			// Assigning location to the end depot (zero time and distance to every other node)
 			line = fr.readLine();
 			list1 = line.split(",");
 			number = Integer.parseInt(list1[1].trim());
-			depot.get(1).location = number-1;
-			depot.get(1).getLocation(number-1);
+			depot.get(1).location = number;
+			depot.get(1).getLocation(number);
 			
 			// Counting the number of cities
 			line = fr.readLine();

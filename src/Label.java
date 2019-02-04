@@ -9,8 +9,8 @@ import java.util.ArrayList;
 		public float volumeCapacityUsed;
 		public Label predesessor;
 		public Node node;
-		public ArrayList<Node> visitedPickupNodes;
-		public ArrayList<Node> openNodes;
-		public ArrayList<Node> path;
-	}
+		public ArrayList<Integer> visitedPickupNodes;
+		public ArrayList<Integer> openNodes;
+		public ArrayList<Integer> path;
+}
 
