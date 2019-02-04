@@ -18,7 +18,7 @@ public class Node {
 	
 	public void getLocation(int location){
 	
-		switch(location) {
+		switch(location+1) {
 		case 1: locationName = "Trondheim";
 		break;
 		case 2: locationName = "Oslo";
