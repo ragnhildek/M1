@@ -16,10 +16,20 @@ public class InstanceData {
 	public int volumeCap;
 	public int weightCap;
 	public float[][] times;
-	public int[][] distances;
+	public static int[][] distances;
 	public int numberOfCities;
 	
 	public InstanceData(String datafile) {
 		this.instanceName = datafile;
+	}
+	
+	public static int getDistance (Node i, Node j, InstanceData inputdata){
+	int iLocation = i.location;
+	int jLocation = j.location;
+	int distance = inputdata.distances[iLocation][jLocation-1];
+	System.out.println(distance);
+	return distance;
+
+	
 	}
 }

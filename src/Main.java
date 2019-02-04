@@ -24,6 +24,7 @@ public class Main {
 		System.out.println(nodes.get(3).weight);
 		System.out.println(nodes.get(3).volume);
 		System.out.println(nodes.get(3).locationName);
+		InstanceData.getDistance(nodes.get(3), nodes.get(4), inputdata);
 
 	}
 
