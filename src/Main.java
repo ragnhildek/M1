@@ -18,6 +18,7 @@ public class Main {
 
 		InstanceData.getDistance(nodes.get(1), nodes.get(5), inputdata);
 		InstanceData.getTime(nodes.get(4), nodes.get(5), inputdata);
+		System.out.println(nodes.get(0).location);
+		System.out.println(nodes.get(0).locationName);
 	}
-
 }

@@ -16,7 +16,7 @@ public class InstanceData {
 	public int volumeCap;
 	public int weightCap;
 	public float[][] times;
-	public static int[][] distances;
+	public int[][] distances;
 	public int numberOfCities;
 	
 	public InstanceData(String datafile) {
@@ -26,7 +26,7 @@ public class InstanceData {
 	public static int getDistance (Node i, Node j, InstanceData inputdata){
 	int iLocation = i.location;
 	int jLocation = j.location;
-	int distance = inputdata.distances[iLocation][jLocation];
+	int distance = inputdata.distances[iLocation-1][jLocation-1];
 	System.out.println(distance);
 	return distance;
 	}
@@ -34,7 +34,7 @@ public class InstanceData {
 	public static float getTime (Node i, Node j, InstanceData inputdata){
 	int iTime = i.location;
 	int jTime = j.location;
-	float time = inputdata.times[iTime][jTime];
+	float time = inputdata.times[iTime-1][jTime-1];
 	System.out.println(time);
 	return time;
 	}
