@@ -26,10 +26,16 @@ public class InstanceData {
 	public static int getDistance (Node i, Node j, InstanceData inputdata){
 	int iLocation = i.location;
 	int jLocation = j.location;
-	int distance = inputdata.distances[iLocation][jLocation-1];
+	int distance = inputdata.distances[iLocation][jLocation];
 	System.out.println(distance);
 	return distance;
-
+	}
 	
+	public static float getTime (Node i, Node j, InstanceData inputdata){
+	int iTime = i.location;
+	int jTime = j.location;
+	float time = inputdata.times[iTime][jTime];
+	System.out.println(time);
+	return time;
 	}
 }

@@ -15,17 +15,9 @@ public class Main {
 		InstanceData inputdata = new InstanceData(datafile);
 
 		InputReader.inputReader(datafile, nodes, inputdata, depot, pickupNodes, deliveryNodes) ;
-		
-		System.out.println(nodes.get(3).number);
-		System.out.println(nodes.get(3).earlyTimeWindow);
-		System.out.println(nodes.get(3).lateTimeWindow);
-		System.out.println(nodes.get(3).type);
-		System.out.println(nodes.get(3).location);
-		System.out.println(nodes.get(3).weight);
-		System.out.println(nodes.get(3).volume);
-		System.out.println(nodes.get(3).locationName);
-		InstanceData.getDistance(nodes.get(3), nodes.get(4), inputdata);
 
+		InstanceData.getDistance(nodes.get(1), nodes.get(5), inputdata);
+		InstanceData.getTime(nodes.get(4), nodes.get(5), inputdata);
 	}
 
 }
