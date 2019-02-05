@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.Vector;
 
@@ -160,25 +161,29 @@ public class PathBuilder {
 		return list;
 	}
 	
+	
 	private boolean dominateLabel(Label L1, Label L2) {
-		if(L1.time<=L2.time && L1.cost<=L2.cost && L1.VisitedNodes.size() == L2.VisitedNodes.size()) {
-		
-				for(int i : L1.VisitedNodes) {
-					if(!L2.VisitedNodes.contains(i)) {
-						return false;
-					}
+		if(L1.time<=L2.time && L1.profit>=L2.profit && L1.node == L2.node) {
+			for (int i : L1.path ){
+				if (!L2.path.contains(i)){
+					return false;
 				}
-//				System.out.println("Label: "+L1.toString());
-//				System.out.println("Dominates Label: "+L2.toString());
-				return true;
 			}
-			
-		
-		else {
-			return false;
+			for (int i : L1.unreachablePickupNodes ){
+				if (!L2.unreachablePickupNodes.contains(i)){
+					return false;
+				}
+			}
+			System.out.println("Label: " + L1.toString());
+			System.out.println("Dominates Label: " + L2.toString());
+			return true;
 		}
+		else return false; 
 	}
 	
+	
+	
+	//Updates the prosessed and unprossessed lists according to the dominated labels.
 	private boolean checkdominance(Label newLabel, ArrayList<Label> unprocessed, ArrayList<Label> processed) {
 		ArrayList<Label> remove = new ArrayList<Label>();
 		
@@ -208,5 +213,44 @@ public class PathBuilder {
 	}
 	
 
+	private boolean recursiveSearch(Label L, int[] fueltransported, int[] compartments, int counter) {
+		
+		if(counter==L.vessel.compartments.length) {
+			int[] fuelCapacity = new int[inputdata.nrFuelTypes];
+			for(int i = 0; i < compartments.length; i++) {
+				if(compartments[i]>=0) {
+				fuelCapacity[compartments[i]]+=L.vessel.compartments[i];
+				}
+			}
+			for(int i = 0; i<inputdata.nrFuelTypes; i++) {
+				if(fueltransported[i]>fuelCapacity[i]) {
+					return false;
+				}
+			}
+			return true;
+		}
+		
+		for(int i =0; i < fueltransported.length; i++) {
+//			System.out.println(Arrays.toString(L.vessel.fuelCompartments[i]));
+			if(L.vessel.fuelCompartments[i][counter]==1 && compartments[counter] == -1) {
+				int[] comp = Arrays.copyOf(compartments, compartments.length);
+				comp[counter]= i;
+//				System.out.println(Arrays.toString(comp));
+				boolean test = recursiveSearch(L, fueltransported, comp, counter+1);
+				if(test) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	private int calcBinaryNumber(Label L) {
+		int binary = 0;
+		for(int i : L.VisitedNodes) {
+			binary+=Math.pow(2, i);
+		}
+		return binary;
+	}
 
 }
