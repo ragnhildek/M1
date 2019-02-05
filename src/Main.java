@@ -22,5 +22,6 @@ public class Main {
 		System.out.println(nodes.get(0).locationName);
 		
 		PathBuilder.PathBuilder(pickupNodes, deliveryNodes, nodes, depot, inputdata);
+		System.out.println(Node.getCorrespondingNode(nodes.get(2),nodes).number);
 	}
 }

@@ -18,11 +18,32 @@ public class PathBuilder {
 		}
 		Label L2 = new Label();
 		L2.node = node;
-		L2.predesessor = L;
-		L2.time = Math.max(L.time+InstanceData.getTime(L.node, node, inputdata)+node.weight*inputdata.timeTonService, node.earlyTimeWindow); 
-		if(L2.time > node.lateTimeWindow){
-			return null;
+		L2.predesessor = L;	
+		L2.path.add(node.number);		
+		
+		if(node.type == "PickupNode"){
+			L2.unreachablePickupNodes.add(node.number);
+			L2.openNodes.add(node.number);
+			for (int i=0 ; i < pickupNodes.size(); i++){
+				if (!L2.path.contains(pickupNodes.get(i).number)){
+					if (L2.time + InstanceData.getTime(node, pickupNodes.get(i), inputdata) + node.weight *inputdata.timeTonService > pickupNodes.get(i).lateTimeWindow){
+						L2.unreachablePickupNodes.add(pickupNodes.get(i).number);
+					}
+				}
+			}
 		}
+		
+		if(node.type == "DeliveryNode"){
+			L2.openNodes.remove(node.getCorrespondingNode(node, nodes).number);
+		}
+		
+		
+		
+		L2.time = Math.max(L.time+InstanceData.getTime(L.node, node, inputdata)+L.node.weight*inputdata.timeTonService, node.earlyTimeWindow); 	
+		if(L2.time > node.lateTimeWindow){
+			return null;	
+		}
+		
 		if(node.type=="PickupNode") {
 			if(L.weightCapacityUsed + node.weight <= inputdata.weightCap){
 				L2.weightCapacityUsed = L.weightCapacityUsed + node.weight;
@@ -46,9 +67,18 @@ public class PathBuilder {
 			L2.volumeCapacityUsed = L.volumeCapacityUsed - node.volume;
 		}
 		if(node.type == "PickupNode") {
-			L2.profit = L.profit + (inputdata.revenue * node.weight * inputdata.getDistance(node, node, inputdata));
-		}
+			L2.profit = L.profit + (inputdata.revenue * node.weight * inputdata.getDistance(node, node.getCorrespondingNode(node, nodes), inputdata))
+						- inputdata.fuelPrice*inputdata.fuelConsumptionEmptyTruckPerKm*inputdata.getDistance(L.node,node,inputdata)
+						- inputdata.fuelPrice*inputdata.fuelConsumptionPerTonKm*L2.weightCapacityUsed*inputdata.getDistance(L.node,node,inputdata)
+						- inputdata.otherDistanceDependentCostsPerKm * inputdata.getDistance(L.node, node, inputdata)
+						- (inputdata.laborCostperHour + inputdata.otherTimeDependentCostsPerKm)* (L2.time - 0);
+			}
 		
+		if(node.type == "Depot" || node.type == "DeliveryNode") {
+			L2.profit = - inputdata.fuelPrice*inputdata.fuelConsumptionEmptyTruckPerKm*inputdata.getDistance(L.node,node,inputdata)
+						- inputdata.fuelPrice*inputdata.fuelConsumptionPerTonKm*L2.weightCapacityUsed*inputdata.getDistance(L.node,node,inputdata)
+						- inputdata.otherDistanceDependentCostsPerKm * inputdata.getDistance(L.node, node, inputdata)
+						- (inputdata.laborCostperHour + inputdata.otherTimeDependentCostsPerKm)* (L2.time - 0); }
 		
 		
 		

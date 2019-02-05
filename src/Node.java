@@ -43,9 +43,11 @@ public class Node {
 		}
 	}
 	
-	public Node getCorrespondingNode(Node node, ArrayList<Node>nodes) {
+	public Node getCorrespondingNode(Node node, ArrayList<Node>nodes) throws NullPointerException {
+		if (node.type == "Depot"){
+	        throw new NullPointerException("The depot node does not have a corresponding node");
+		}
 		int num = node.number;
-		try{
 		for(int i = 0; i<nodes.size();i++){
 			if(node.type=="PickupNode"){
 				if (nodes.get(i).number== num+1){
@@ -60,11 +62,9 @@ public class Node {
 				}
 					
 				}		
-		}
-		}  catch(NullPointerException e){
-            System.out.print("The node has no corresponding node.");
-        }return null;
-
+		
+		}  
+		return null;
 	
 		}
 
