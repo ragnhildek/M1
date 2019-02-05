@@ -25,7 +25,7 @@ public class PathBuilder {
 		}
 		if(node.type=="PickupNode") {
 			if(L.weightCapacityUsed + node.weight <= inputdata.weightCap){
-			L2.weightCapacityUsed = L.weightCapacityUsed + node.weight;
+				L2.weightCapacityUsed = L.weightCapacityUsed + node.weight;
 			}
 			else{
 				return null;
@@ -36,7 +36,7 @@ public class PathBuilder {
 		}
 		if(node.type=="PickupNode") {
 			if(L.volumeCapacityUsed + node.volume <= inputdata.volumeCap){
-			L2.volumeCapacityUsed = L.volumeCapacityUsed + node.volume;
+				L2.volumeCapacityUsed = L.volumeCapacityUsed + node.volume;
 			}
 			else{
 				return null;
@@ -48,6 +48,7 @@ public class PathBuilder {
 		if(node.type == "PickupNode") {
 			L2.profit = L.profit + (inputdata.revenue * node.weight * inputdata.getDistance(node, node, inputdata));
 		}
+		
 		
 		
 		
