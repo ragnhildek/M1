@@ -45,6 +45,7 @@ public class Node {
 	
 	public Node getCorrespondingNode(Node node, ArrayList<Node>nodes) {
 		int num = node.number;
+		try{
 		for(int i = 0; i<nodes.size();i++){
 			if(node.type=="PickupNode"){
 				if (nodes.get(i).number== num+1){
@@ -58,9 +59,13 @@ public class Node {
 				return node1;
 				}
 					
-				}			
+				}		
 		}
-		return null;
+		}  catch(NullPointerException e){
+            System.out.print("The node has no corresponding node.");
+        }return null;
+
+	
 		}
 
 
