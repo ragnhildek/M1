@@ -16,14 +16,14 @@ public class Main {
 
 		InputReader.inputReader(datafile, nodes, inputdata, depot, pickupNodes, deliveryNodes) ;
 
-		InstanceData.getDistance(nodes.get(1), nodes.get(5), inputdata);
-		InstanceData.getTime(nodes.get(4), nodes.get(5), inputdata);
-		System.out.println(nodes.get(0).location);
-		System.out.println(nodes.get(0).locationName);
+		//InstanceData.getDistance(nodes.get(1), nodes.get(5), inputdata);
+		//InstanceData.getTime(nodes.get(4), nodes.get(5), inputdata);
+		//System.out.println(nodes.get(0).location);
+		//System.out.println(nodes.get(0).locationName);
 		PathBuilder builder;
 		builder = new PathBuilder(pickupNodes, deliveryNodes, nodes, depot,inputdata);
 		builder.BuildPaths();
-		System.out.println(Node.getCorrespondingNode(nodes.get(2),nodes).number);
+		//System.out.println(Node.getCorrespondingNode(nodes.get(2),nodes).number);
 		
 	}
 }

@@ -2,6 +2,7 @@ import java.util.ArrayList;
 //import java.util.Arrays;
 import java.util.Hashtable;
 //import java.util.Vector;
+import java.util.Vector;
 
 public class PathBuilder {
 	public ArrayList<Node> nodes;
@@ -21,7 +22,7 @@ public class PathBuilder {
 		this.depot = depot;
 		this.inputdata = inputdata;
 		feasibilityTest = new ArrayList<Hashtable<Integer, Boolean>>();
-		System.out.println(nodes.get(2).locationName);
+		//System.out.println(nodes.get(2).locationName);
 }
 	
 	
@@ -36,38 +37,14 @@ public class PathBuilder {
 		L2.node = node;
 		L2.predesessor = L;
 		//L2.path = new ArrayList<Integer>();
-		L2.path = L.path;
-		L2.unreachablePickupNodes = L.unreachablePickupNodes;
-		L2.openNodes = L.openNodes;
-		L2.path.add(node.number);
+		
+		
+	
+	
+		
+		//L2.toString();
 
-		
-		
-		
-			
-		if(node.type == "PickupNode" && !L.unreachablePickupNodes.contains(node)){
-			L2.unreachablePickupNodes.add(node.number);
-			L2.openNodes.add(node.number);
-			for (int i=0 ; i < pickupNodes.size(); i++){
-				if (!L2.path.contains(pickupNodes.get(i).number)){
-					if (L2.time + InstanceData.getTime(node, pickupNodes.get(i), inputdata) + node.weight *inputdata.timeTonService > pickupNodes.get(i).lateTimeWindow){
-						L2.unreachablePickupNodes.add(pickupNodes.get(i).number);
-					}
-				}
-			}
-		}
-		else return null;
-		
-		// only arrive at a delivery node if it has been picked up
-		if(node.type == "DeliveryNode" && L.openNodes.contains(node.getCorrespondingNode(node, nodes))){
-			L2.openNodes.remove(node.getCorrespondingNode(node, nodes).number);
-		}
-		else return null;
-		
-		//not arrive at end depot without delivering every pickup
-		if(node.number == 1 && !L.openNodes.isEmpty()){
-		return null;	
-		}
+	
 		
 		//not return to start depot
 		if(node.number == 0){
@@ -79,8 +56,73 @@ public class PathBuilder {
 			return null;
 		}
 		
+		L2.path = new ArrayList<Integer>();
+		for(int i : L.path) {
+			L2.path.add(i);
+		}
+		
+		L2.unreachablePickupNodes = new ArrayList<Integer>();
+		for(int i : L.unreachablePickupNodes) {
+			L2.unreachablePickupNodes.add(i);
+		}
+		
+		L2.openNodes = new ArrayList<Integer>();
+		for(int i : L.openNodes) {
+			L2.openNodes.add(i);
+		}
+		
+		//not arrive at end depot without delivering every pickup
+		if(node.number == 1 && !L.openNodes.isEmpty()){
+			return null;	
+		}
+		//L2.path.add(node.number);
+		
+		//else {L2.path = L.path;
+		//}
+		//L.toString();
 		
 		L2.time = Math.max(L.time+InstanceData.getTime(L.node, node, inputdata)+L.node.weight*inputdata.timeTonService, node.earlyTimeWindow); 	
+		
+			
+		if(node.type == "PickupNode" && !L.unreachablePickupNodes.contains(node)){
+			L2.unreachablePickupNodes.add(node.number);
+			L2.openNodes.add(node.number);
+			for (int i=0 ; i < pickupNodes.size(); i++){
+				
+				if (!L2.path.contains(pickupNodes.get(i).number)){
+					if (L2.time + InstanceData.getTime(node, pickupNodes.get(i), inputdata) + node.weight *inputdata.timeTonService > pickupNodes.get(i).lateTimeWindow){
+						L2.unreachablePickupNodes.add(pickupNodes.get(i).number);
+					}
+				}
+			}
+		}
+		//else return null;
+		
+		// only arrive at a delivery node if it has been picked up
+		//if(node.type == "DeliveryNode"){
+		//	System.out.println(node.number);
+		//	System.out.println(node.getCorrespondingNode(node, nodes).number);
+		//	if(!L.openNodes.contains(node.getCorrespondingNode(node,nodes))){
+		//		System.out.println("2f");
+		//		return null;//L2.openNodes.remove(node.getCorrespondingNode(node, nodes).number);
+		//	}
+			//else return null;
+		//}
+			
+		
+		
+		if (node.type == "DeliveryNode" && ! L.openNodes.contains(node.getCorrespondingNode(node, nodes).number)){	
+			return null;
+		}
+		
+		
+		if (node.type == "DeliveryNode" && L.openNodes.contains(node.getCorrespondingNode(node, nodes).number)){
+			L2.openNodes.remove(L.openNodes.indexOf(node.getCorrespondingNode(node, nodes).number));
+		}
+		
+		
+		
+	
 		if(L2.time > node.lateTimeWindow){
 			return null;
 		}
@@ -117,7 +159,7 @@ public class PathBuilder {
 						- inputdata.otherDistanceDependentCostsPerKm * inputdata.getDistance(L.node, node, inputdata)
 						- (inputdata.laborCostperHour + inputdata.otherTimeDependentCostsPerKm)* (L2.time - 0);
 			}
-		L2.toString();
+	
 		
 		if(node.type == "Depot" || node.type == "DeliveryNode") {
 			L2.profit = L.profit - inputdata.fuelPrice*inputdata.fuelConsumptionEmptyTruckPerKm*inputdata.getDistance(L.node,node,inputdata)
@@ -125,7 +167,9 @@ public class PathBuilder {
 						- inputdata.otherDistanceDependentCostsPerKm * inputdata.getDistance(L.node, node, inputdata)
 						- (inputdata.laborCostperHour + inputdata.otherTimeDependentCostsPerKm)* (L2.time - 0); 
 			}
-		L2.toString();
+		L2.path.add(node.number);
+		//L2.toString();
+		L2.labelNumber = L.labelNumber+1;
 		return L2;
 		
 	}
@@ -135,6 +179,7 @@ public class PathBuilder {
 	public ArrayList<Label> BuildPaths() {
 		ArrayList<Label> list = new ArrayList<Label>();
 		Label L = new Label();
+		L.labelNumber = 0;
 		L.path = new ArrayList<Integer>();
 		L.node = nodes.get(0);
 		L.time = 0;
@@ -146,19 +191,20 @@ public class PathBuilder {
 		L.openNodes = new ArrayList<Integer>();		
 	
 		L.path.add(L.node.number);
-		L.unreachablePickupNodes.add(L.node.number);
-		L.toString();
+		//L.unreachablePickupNodes.add(L.node.number);
+		//L.toString();
 		
 		ArrayList<Label> unprocessed = new ArrayList<Label>();
 		ArrayList<Label> processed = new ArrayList<Label>();
 		unprocessed.add(L);
 		
 		while(!unprocessed.isEmpty()) { //Going through all unprocessed labels
-			System.out.println("here");
+			//System.out.println("here");
 			Label label = unprocessed.remove(0);
 			for(int i = 0; i < nodes.size(); i++) {
-			System.out.println("here 2");
+			//System.out.println("here 2");
 				Label newLabel = LabelExtension(nodes.get(i), label);
+				//System.out.println(i);
 				if(newLabel!=null) {
 					if(checkdominance(newLabel, unprocessed, processed)) {
 						unprocessed.add(newLabel); 
@@ -187,8 +233,10 @@ public class PathBuilder {
 					return false;
 				}
 			}
-			System.out.println("Label: " + L1.toString());
-			System.out.println("Dominates Label: " + L2.toString());
+			System.out.println("Label: ");
+			L1.toString();
+			System.out.println("dominates label: ");
+			L2.toString();
 			return true;
 		}
 		else return false; 
@@ -222,6 +270,7 @@ public class PathBuilder {
 			}
 		}
 		processed.removeAll(remove);
+		
 		return true;
 	}
 	

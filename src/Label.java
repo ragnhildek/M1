@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 
 	public class Label {
+		public int labelNumber;
 		public float time; 
 		public float profit;
 		public float weightCapacityUsed;
@@ -28,6 +29,8 @@ import java.util.ArrayList;
 		}
 		
 		System.out.println(string);
+		System.out.println("");
+		System.out.println("");
 		return string;
 	}
 }

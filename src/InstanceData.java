@@ -27,7 +27,7 @@ public class InstanceData {
 	int iLocation = i.location;
 	int jLocation = j.location;
 	int distance = inputdata.distances[iLocation-1][jLocation-1];
-	System.out.println(distance);
+	//System.out.println(distance);
 	return distance;
 	}
 	
@@ -35,7 +35,7 @@ public class InstanceData {
 	int iTime = i.location;
 	int jTime = j.location;
 	float time = inputdata.times[iTime-1][jTime-1];
-	System.out.println(time);
+	//System.out.println(time);
 	return time;
 	}
 }
