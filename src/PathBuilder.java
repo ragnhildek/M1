@@ -117,6 +117,7 @@ public class PathBuilder {
 						- inputdata.otherDistanceDependentCostsPerKm * inputdata.getDistance(L.node, node, inputdata)
 						- (inputdata.laborCostperHour + inputdata.otherTimeDependentCostsPerKm)* (L2.time - 0);
 			}
+		L2.toString();
 		
 		if(node.type == "Depot" || node.type == "DeliveryNode") {
 			L2.profit = L.profit - inputdata.fuelPrice*inputdata.fuelConsumptionEmptyTruckPerKm*inputdata.getDistance(L.node,node,inputdata)
@@ -126,6 +127,7 @@ public class PathBuilder {
 			}
 		L2.toString();
 		return L2;
+		
 	}
 	
 	
@@ -140,10 +142,11 @@ public class PathBuilder {
 		L.weightCapacityUsed = 0;
 		L.volumeCapacityUsed = 0;
 		L.predesessor = null;
-		L.unreachablePickupNodes = null;
-		L.openNodes = null;		
+		L.unreachablePickupNodes = new ArrayList<Integer>();
+		L.openNodes = new ArrayList<Integer>();		
 	
 		L.path.add(L.node.number);
+		L.unreachablePickupNodes.add(L.node.number);
 		L.toString();
 		
 		ArrayList<Label> unprocessed = new ArrayList<Label>();
