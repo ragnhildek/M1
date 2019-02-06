@@ -23,7 +23,7 @@ public class InstanceData {
 		this.instanceName = datafile;
 	}
 	
-	public int getDistance (Node i, Node j, InstanceData inputdata){
+	public static int getDistance (Node i, Node j, InstanceData inputdata){
 	int iLocation = i.location;
 	int jLocation = j.location;
 	int distance = inputdata.distances[iLocation-1][jLocation-1];

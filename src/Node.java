@@ -43,7 +43,7 @@ public class Node {
 		}
 	}
 	
-	public Node getCorrespondingNode(Node node, ArrayList<Node>nodes) throws NullPointerException {
+	public static Node getCorrespondingNode(Node node, ArrayList<Node>nodes) throws NullPointerException {
 		if (node.type == "Depot"){
 	        throw new NullPointerException("The depot node does not have a corresponding node");
 		}
