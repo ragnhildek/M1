@@ -1,14 +1,25 @@
 import java.util.ArrayList;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.Hashtable;
-import java.util.Vector;
+//import java.util.Vector;
 
 public class PathBuilder {
+	public ArrayList<Node> nodes;
+	public ArrayList<Node> pickupNodes;
+	public ArrayList<Node> deliveryNodes;
+	public ArrayList<Node> depot;
+	public InstanceData inputdata;
+	public ArrayList<Hashtable<Integer, Boolean>> feasibility;
 
 	
 	public static ArrayList<Hashtable<Integer, Boolean>> feasibilityTest; 
 	
-	public static void PathBuilder(ArrayList<Node> pickupNodes, ArrayList<Node> deliveryNodes, ArrayList<Node> nodes, ArrayList<Node> depot, InstanceData inputdata) {
+	public PathBuilder(ArrayList<Node> pickupNodes, ArrayList<Node> deliveryNodes, ArrayList<Node> nodes, ArrayList<Node> depot, InstanceData inputdata) {
+		this.pickupNodes = pickupNodes;
+		this.nodes = nodes;
+		this.deliveryNodes = deliveryNodes;
+		this.depot = depot;
+		this.inputdata = inputdata;
 		feasibilityTest = new ArrayList<Hashtable<Integer, Boolean>>();
 		System.out.println(nodes.get(2).locationName);
 }
