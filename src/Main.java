@@ -20,8 +20,9 @@ public class Main {
 		InstanceData.getTime(nodes.get(4), nodes.get(5), inputdata);
 		System.out.println(nodes.get(0).location);
 		System.out.println(nodes.get(0).locationName);
-		
-		PathBuilder.BuildPaths(inputdata, pickupNodes, nodes, depot);
+		PathBuilder builder;
+		builder = new PathBuilder(pickupNodes, deliveryNodes, nodes, depot,inputdata);
+		builder.BuildPaths();
 		System.out.println(Node.getCorrespondingNode(nodes.get(2),nodes).number);
 		
 	}

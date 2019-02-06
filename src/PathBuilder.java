@@ -27,7 +27,7 @@ public class PathBuilder {
 	
 	
 	
-	public static Label LabelExtension(Node node, Label L, InstanceData inputdata, ArrayList<Node> pickupNodes,  ArrayList<Node> nodes, ArrayList<Node>depot) {
+	public Label LabelExtension(Node node, Label L) {
 		if(L.path.contains(node.number)) {
 			return null;
 		}
@@ -36,8 +36,13 @@ public class PathBuilder {
 		L2.node = node;
 		L2.predesessor = L;
 		//L2.path = new ArrayList<Integer>();
+		L2.path = L.path;
+		L2.unreachablePickupNodes = L.unreachablePickupNodes;
+		L2.openNodes = L.openNodes;
 		L2.path.add(node.number);
-		L2.toString();
+
+		
+		
 		
 			
 		if(node.type == "PickupNode" && !L.unreachablePickupNodes.contains(node)){
@@ -119,13 +124,13 @@ public class PathBuilder {
 						- inputdata.otherDistanceDependentCostsPerKm * inputdata.getDistance(L.node, node, inputdata)
 						- (inputdata.laborCostperHour + inputdata.otherTimeDependentCostsPerKm)* (L2.time - 0); 
 			}
-	
+		L2.toString();
 		return L2;
 	}
 	
 	
 	
-	public static ArrayList<Label> BuildPaths(InstanceData inputdata, ArrayList<Node> pickupNodes, ArrayList<Node> nodes, ArrayList<Node>depot) {
+	public ArrayList<Label> BuildPaths() {
 		ArrayList<Label> list = new ArrayList<Label>();
 		Label L = new Label();
 		L.path = new ArrayList<Integer>();
@@ -137,6 +142,9 @@ public class PathBuilder {
 		L.predesessor = null;
 		L.unreachablePickupNodes = null;
 		L.openNodes = null;		
+	
+		L.path.add(L.node.number);
+		L.toString();
 		
 		ArrayList<Label> unprocessed = new ArrayList<Label>();
 		ArrayList<Label> processed = new ArrayList<Label>();
@@ -147,7 +155,7 @@ public class PathBuilder {
 			Label label = unprocessed.remove(0);
 			for(int i = 0; i < nodes.size(); i++) {
 			System.out.println("here 2");
-				Label newLabel = LabelExtension(nodes.get(i), label, inputdata, pickupNodes, nodes, depot);
+				Label newLabel = LabelExtension(nodes.get(i), label);
 				if(newLabel!=null) {
 					if(checkdominance(newLabel, unprocessed, processed)) {
 						unprocessed.add(newLabel); 
@@ -164,7 +172,7 @@ public class PathBuilder {
 	}
 	
 	
-	private static boolean dominateLabel(Label L1, Label L2) {
+	private boolean dominateLabel(Label L1, Label L2) {
 		if(L1.time<=L2.time && L1.profit>=L2.profit && L1.node == L2.node) {
 			for (int i : L1.path ){
 				if (!L2.path.contains(i)){
@@ -186,7 +194,7 @@ public class PathBuilder {
 	
 	
 	//Updates the prosessed and unprossessed lists according to the dominated labels.
-	private static boolean checkdominance(Label newLabel, ArrayList<Label> unprocessed, ArrayList<Label> processed) {
+	private boolean checkdominance(Label newLabel, ArrayList<Label> unprocessed, ArrayList<Label> processed) {
 		ArrayList<Label> remove = new ArrayList<Label>();
 		
 		for(Label oldLabel : unprocessed) {

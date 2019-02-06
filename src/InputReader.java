@@ -202,6 +202,8 @@ public class InputReader {
 			list1 = line.split(",");
 			inputdata.revenue = Integer.parseInt(list1[1].trim());
 			
+			fr.close();
+			
 		}
 		catch(Exception e) {
 			e.printStackTrace();

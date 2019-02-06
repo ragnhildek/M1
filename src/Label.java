@@ -11,18 +11,19 @@ import java.util.ArrayList;
 		public Node node;
 		public ArrayList<Integer> path;
 		public ArrayList<Integer> unreachablePickupNodes;
-		public ArrayList<Integer> openNodes; //pikcupnodes
+		public ArrayList<Integer> openNodes; //pickupnodes
 		
 
 	public String toString() {
-		String string = "Time: " + time+", Profit: "+ profit +", Path: ";
-		for (int  i : path) {
-			string += i;
-		}
+		String string = "Node: " + node.number+ ", Time: " + time+", Profit: "+ profit + ", WeightCapacityUsed: " + weightCapacityUsed + ", VolumeCapacityUsed: " + volumeCapacityUsed+ 
+				", Path: " +path+", unreachablePickupNodes: " + unreachablePickupNodes + ", openNodes: " + openNodes;
+		//for (int  i : path) {
+			//string += i;
+		//}
 		Label temp = predesessor;
 		
 		while(temp!=null) {
-			string+=", Predessesor: "+temp.node;
+			string+=", Predessesor: "+temp.node.number;
 			temp=temp.predesessor;
 		}
 		
