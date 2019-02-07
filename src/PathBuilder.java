@@ -222,6 +222,7 @@ public class PathBuilder {
 	
 	
 	private boolean dominateLabel(Label L1, Label L2) {
+		if(L1.openNodes.isEmpty() && L2.openNodes.isEmpty() && L1.path.contains(1)){
 		if(L1.time<=L2.time && L1.profit>=L2.profit && L1.node == L2.node) {
 			for (int i : L1.path ){
 				if (!L2.path.contains(i)){
@@ -240,6 +241,7 @@ public class PathBuilder {
 			return true;
 		}
 		else return false; 
+		}else return false;
 	}
 	
 	
